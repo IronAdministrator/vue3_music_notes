@@ -1,6 +1,4 @@
-<script setup>
-// @ is an alias to /src
-</script>
+<script setup></script>
 
 <template>
   <div class="home">
