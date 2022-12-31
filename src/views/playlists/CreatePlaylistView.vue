@@ -1,22 +1,44 @@
 <script setup>
 import { ref } from "vue";
 import useStorage from "@/composables/useStorage";
+import useCollection from "@/composables/useCollection";
+import getUser from "@/composables/getUser";
+import { timestamp } from "@/firebase/config";
 
-const { url, filePath, error, uploadImage } = useStorage();
+const { url, filePath, uploadImage } = useStorage();
+const { addDoc, error } = useCollection("playlists");
+const { user } = getUser();
 
 const title = ref("");
 const description = ref("");
 const file = ref(null);
 const fileError = ref(null);
+const isPending = ref(false);
 
 // alowed file types:
 const fileTypes = ["image/png", "image/jpeg"];
 
 const handleSubmit = async () => {
   if (file.value) {
+    isPending.value = true;
     // console.log(title.value, description.value, file.value);
     await uploadImage(file.value);
-    console.log("Image uploaded. URL: ", url.value);
+    // console.log("Image uploaded. URL: ", url.value);
+    const playlistData = {
+      title: title.value,
+      description: description.value,
+      userId: user.value.uid,
+      username: user.value.displayName,
+      coverUrl: url.value,
+      filePath: filePath.value,
+      songs: [],
+      createdAt: timestamp(),
+    };
+    await addDoc(playlistData);
+    isPending.value = false;
+    if (!error.value) {
+      console.log("playlist added!");
+    }
   }
 };
 
@@ -47,7 +69,7 @@ const handleFileChange = (e) => {
     <input type="file" @change="handleFileChange" />
     <div v-if="fileError" class="error">{{ fileError }}</div>
     <!-- <div v-if="error" class="error"></div> -->
-    <button>Create</button>
+    <button :disabled="isPending">{{ isPending ? "Saving..." : "Create" }}</button>
   </form>
 </template>
 
