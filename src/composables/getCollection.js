@@ -23,14 +23,14 @@ const getCollection = (collection) => {
   }, err => {
     console.log(err.message)
     documents.value = null
-    error.value = 'could not fetch the data'
+    error.value = 'Could not fetch the data'
   })
 
   watchEffect((onInvalidate) => {
     onInvalidate(() => unsub());
   });
 
-  return { error, documents }
+  return { documents, error }
 }
 
 export default getCollection
