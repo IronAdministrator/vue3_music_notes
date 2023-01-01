@@ -7,7 +7,9 @@ import Navbar from "./components/Navbar.vue";
   <div class="content">
     <router-view v-slot="{ Component, route }">
       <Transition name="slide-fade" mode="out-in">
-        <component :is="Component" :key="route.path" />
+        <div :key="route.fullPath">
+          <component :is="Component"></component>
+        </div>
       </Transition>
     </router-view>
   </div>
