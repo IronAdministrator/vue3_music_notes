@@ -6,18 +6,20 @@ const props = defineProps({
 
 <template>
   <div v-for="playlist in playlists" :key="playlist.id">
-    <div class="single">
-      <div class="thumbnail">
-        <img :src="playlist.coverUrl" alt="cover image" />
+    <router-link :to="{ name: 'PlaylistDetailsView', params: { id: playlist.id } }">
+      <div class="single">
+        <div class="thumbnail">
+          <img :src="playlist.coverUrl" alt="cover image" />
+        </div>
+        <div class="info">
+          <h3>{{ playlist.title }}</h3>
+          <p>Created by {{ playlist.username }}</p>
+        </div>
+        <div class="song-number">
+          <p>{{ playlist.songs.length }}</p>
+        </div>
       </div>
-      <div class="info">
-        <h3>{{ playlist.title }}</h3>
-        <p>Created by {{ playlist.username }}</p>
-      </div>
-      <div class="song-number">
-        <p>{{ playlist.songs.length }}</p>
-      </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -43,9 +45,12 @@ const props = defineProps({
   border-radius: 10px;
 }
 img {
-  max-width: 150%;
+  /* max-width: 150%;
   max-height: 150%;
-  display: block;
+  display: block; */
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 .info {
   margin: 0 30px;

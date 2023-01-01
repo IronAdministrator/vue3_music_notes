@@ -1,6 +1,10 @@
 <script setup>
 import { ref } from "vue";
 import useLogin from "@/composables/useLogin";
+import { useRoute, useRouter } from "vue-router";
+
+const route = useRoute();
+const router = useRouter();
 
 const email = ref("");
 const password = ref("");
@@ -12,7 +16,7 @@ const handleSubmit = async () => {
   if (!error.value) {
     console.log("user logged in");
     // emit("toChat");
-    // router.push({name: "ChatroomView"})
+    router.push({ name: "HomeView" });
   }
 };
 </script>

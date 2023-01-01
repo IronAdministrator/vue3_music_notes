@@ -29,15 +29,18 @@ const handleLogout = async () => {
       </div>
       <h1><router-link :to="{ name: 'HomeView' }">Music Notes</router-link></h1>
       <div class="links">
-        <button v-if="user" @click="handleLogout" :disabled="isPending">
-          {{ isPending ? "Loading..." : "Logout" }}
-        </button>
-        <router-link v-if="!user" class="btn" :to="{ name: 'SignupView' }"
-          >Signup</router-link
-        >
-        <router-link v-if="!user" class="btn" :to="{ name: 'LoginView' }"
-          >Login</router-link
-        >
+        <div v-if="user" class="nav-menu">
+          <router-link class="btn" :to="{ name: 'CreatePlaylistView' }"
+            >Create Playlist</router-link
+          >
+          <button @click="handleLogout" :disabled="isPending">
+            {{ isPending ? "Loading..." : "Logout" }}
+          </button>
+        </div>
+        <div v-if="!user" class="nav-menu">
+          <router-link class="btn" :to="{ name: 'SignupView' }">Signup</router-link>
+          <router-link class="btn" :to="{ name: 'LoginView' }">Login</router-link>
+        </div>
       </div>
     </nav>
   </div>
@@ -70,6 +73,10 @@ nav h1 {
 }
 nav .links {
   margin-left: auto;
+  display: flex;
+  gap: 1rem;
+}
+nav .links .nav-menu {
   display: flex;
   gap: 1rem;
 }
