@@ -1,5 +1,7 @@
 <script setup>
 import getDocument from "@/composables/getDocument";
+import getUser from "@/composables/getUser";
+import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
@@ -10,6 +12,12 @@ const props = defineProps({
 });
 
 const { document: playlist, error } = getDocument("playlists", route.params.id);
+const { user } = getUser();
+
+// !computed property to check the ownership of playlist by current logged in user
+const ownership = computed(() => {
+  return playlist.value && user.value && user.value.uid === playlist.value.userId;
+});
 </script>
 
 <template>
@@ -22,6 +30,10 @@ const { document: playlist, error } = getDocument("playlists", route.params.id);
       <h2>{{ playlist.title }}</h2>
       <p>Created by {{ playlist.username }}</p>
       <p>{{ playlist.description }}</p>
+      <!-- // !showing delete button if ownership returns "true" -->
+      <!-- <button v-if="ownership">Delete playlist</button> -->
+      <!-- // !showing delete button if current logged in user id is equal to plalist creator's user id -->
+      <button v-if="user.uid === playlist.userId">Delete playlist</button>
     </div>
     <div class="song-list">
       <p>song list here</p>
