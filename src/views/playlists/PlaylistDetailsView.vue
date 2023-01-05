@@ -1,5 +1,7 @@
 <script setup>
 import getDocument from "@/composables/getDocument";
+import useDocument from "@/composables/useDocument";
+import useStorage from "@/composables/useStorage";
 import getUser from "@/composables/getUser";
 import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -11,13 +13,21 @@ const props = defineProps({
   id: String,
 });
 
-const { document: playlist, error } = getDocument("playlists", route.params.id);
+const { document: playlist, error } = getDocument("playlists", route.params.id); // or use props.id instead of route.params.id
 const { user } = getUser();
+const { deleteDoc } = useDocument("playlists", route.params.id); // or use props.id instead of route.params.id
+const { deleteImage } = useStorage();
 
 // !computed property to check the ownership of playlist by current logged in user
 const ownership = computed(() => {
   return playlist.value && user.value && user.value.uid === playlist.value.userId;
 });
+
+const handleDelete = async () => {
+  await deleteImage(playlist.value.filePath);
+  await deleteDoc();
+  router.push({ name: "HomeView" });
+};
 </script>
 
 <template>
@@ -33,7 +43,9 @@ const ownership = computed(() => {
       <!-- // !showing delete button if ownership returns "true" -->
       <!-- <button v-if="ownership">Delete playlist</button> -->
       <!-- // !showing delete button if current logged in user id is equal to plalist creator's user id -->
-      <button v-if="user.uid === playlist.userId">Delete playlist</button>
+      <button v-if="user.uid === playlist.userId" @click="handleDelete">
+        Delete playlist
+      </button>
     </div>
     <div class="song-list">
       <p>song list here</p>
