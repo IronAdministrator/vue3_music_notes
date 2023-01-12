@@ -5,6 +5,7 @@ import useStorage from "@/composables/useStorage";
 import getUser from "@/composables/getUser";
 import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import AddSong from "@/components/AddSong.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -43,12 +44,11 @@ const handleDelete = async () => {
       <!-- // !showing delete button if ownership returns "true" -->
       <!-- <button v-if="ownership">Delete playlist</button> -->
       <!-- // !showing delete button if current logged in user id is equal to plalist creator's user id -->
-      <button v-if="user.uid === playlist.userId" @click="handleDelete">
-        Delete playlist
-      </button>
+      <button v-if="ownership" @click="handleDelete">Delete playlist</button>
     </div>
     <div class="song-list">
       <p>song list here</p>
+      <AddSong v-if="ownership" :playlist="playlist" />
     </div>
   </div>
 </template>

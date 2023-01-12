@@ -30,6 +30,7 @@ const handleLogout = async () => {
       <h1><router-link :to="{ name: 'HomeView' }">Music Notes</router-link></h1>
       <div class="links">
         <div v-if="user" class="nav-menu">
+          <p>Hi, {{ user.displayName }}</p>
           <router-link class="btn" :to="{ name: 'CreatePlaylistView' }"
             >Create Playlist</router-link
           >
@@ -78,6 +79,7 @@ nav .links {
 }
 nav .links .nav-menu {
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 nav .links a,

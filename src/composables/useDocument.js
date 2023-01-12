@@ -11,8 +11,8 @@ const useDocument = (collection, id) => {
     // await projectFirestore.collection(collection).doc(id).delete()
     try {
       const res = await docRef.delete()
-      return res
       isPending.value = false
+      return res
     } catch (err) {
       console.log(err.message);
       isPending.value = false
