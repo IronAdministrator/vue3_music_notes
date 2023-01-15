@@ -14,9 +14,9 @@ const props = defineProps({
   id: String,
 });
 
-const { document: playlist, error } = getDocument("playlists", route.params.id); // or use props.id instead of route.params.id
+const { document: playlist, error } = getDocument("playlists", route.params.id); // or use props.playlist.id instead of route.params.id
 const { user } = getUser();
-const { deleteDoc } = useDocument("playlists", route.params.id); // or use props.id instead of route.params.id
+const { deleteDoc } = useDocument("playlists", route.params.id); // or use props.playlist.id instead of route.params.id
 const { deleteImage } = useStorage();
 
 // !computed property to check the ownership of playlist by current logged in user
@@ -47,7 +47,10 @@ const handleDelete = async () => {
       <button v-if="ownership" @click="handleDelete">Delete playlist</button>
     </div>
     <div class="song-list">
-      <p>song list here</p>
+      <div v-if="!playlist.songs.length">"No songs added yet"</div>
+      <div class="single-song" v-else v-for="song in playlist.songs" :key="song.id">
+        {{ song.title }}
+      </div>
       <AddSong v-if="ownership" :playlist="playlist" />
     </div>
   </div>
