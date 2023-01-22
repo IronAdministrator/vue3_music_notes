@@ -16,7 +16,7 @@ const props = defineProps({
 
 const { document: playlist, error } = getDocument("playlists", route.params.id); // or use props.playlist.id instead of route.params.id
 const { user } = getUser();
-const { deleteDoc } = useDocument("playlists", route.params.id); // or use props.playlist.id instead of route.params.id
+const { deleteDoc, updateDoc } = useDocument("playlists", route.params.id); // or use props.playlist.id instead of route.params.id
 const { deleteImage } = useStorage();
 
 // !computed property to check the ownership of playlist by current logged in user
@@ -28,6 +28,19 @@ const handleDelete = async () => {
   await deleteImage(playlist.value.filePath);
   await deleteDoc();
   router.push({ name: "HomeView" });
+};
+
+// !remove each song onClick with index
+// const handleSongDelete = (index) => {
+// playlist.value.songs.splice(index, 1);
+// };
+const handleSongDelete = async (id) => {
+  const updatedSongsList = playlist.value.songs.filter((song) => {
+    return id !== song.id;
+  });
+  await updateDoc({
+    songs: updatedSongsList,
+  });
 };
 </script>
 
@@ -47,9 +60,13 @@ const handleDelete = async () => {
       <button v-if="ownership" @click="handleDelete">Delete playlist</button>
     </div>
     <div class="song-list">
-      <div v-if="!playlist.songs.length">"No songs added yet"</div>
+      <div v-if="!playlist.songs.length">No songs added yet</div>
       <div class="single-song" v-else v-for="song in playlist.songs" :key="song.id">
-        {{ song.title }}
+        <div class="details">
+          <h3>{{ song.title }}</h3>
+          <p>{{ song.artist }}</p>
+        </div>
+        <button v-if="ownership" @click="handleSongDelete(song.id)">Delete</button>
       </div>
       <AddSong v-if="ownership" :playlist="playlist" />
     </div>
@@ -94,5 +111,13 @@ const handleDelete = async () => {
 }
 .description {
   text-align: left;
+}
+.single-song {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed var(--secondary);
+  margin-bottom: 20px;
 }
 </style>
