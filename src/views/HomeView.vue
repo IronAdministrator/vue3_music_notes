@@ -16,9 +16,9 @@ const { documents: playlists, error } = getCollection("playlists");
 </template>
 
 <style scoped>
-.playlist-container {
+/* .playlist-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
+} */
 </style>

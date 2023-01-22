@@ -31,6 +31,7 @@ const handleLogout = async () => {
       <div class="links">
         <div v-if="user" class="nav-menu">
           <p>Hi, {{ user.displayName }}</p>
+          <router-link :to="{ name: 'UserPlaylistsView' }">My Playlists</router-link>
           <router-link class="btn" :to="{ name: 'CreatePlaylistView' }"
             >Create Playlist</router-link
           >

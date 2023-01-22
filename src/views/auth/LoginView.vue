@@ -16,7 +16,7 @@ const handleSubmit = async () => {
   if (!error.value) {
     console.log("user logged in");
     // emit("toChat");
-    router.push({ name: "HomeView" });
+    router.push({ name: "UserPlaylistsView" });
   }
 };
 </script>

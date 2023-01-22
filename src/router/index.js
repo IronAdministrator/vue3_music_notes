@@ -4,6 +4,7 @@ import LoginView from "@/views/auth/LoginView.vue";
 import SignupView from "@/views/auth/SignupView.vue";
 import CreatePlaylistView from "@/views/playlists/CreatePlaylistView.vue";
 import PlaylistDetailsView from "@/views/playlists/PlaylistDetailsView.vue"
+import UserPlaylistsView from "@/views/playlists/UserPlaylistsView.vue"
 import { projectAuth } from "../firebase/config"
 
 // auth guard function - redirects users who are NOT signed/logged in
@@ -46,6 +47,12 @@ const routes = [
     component: PlaylistDetailsView,
     beforeEnter: requireAuth,
     props: true,
+  },
+  {
+    path: '/playlists/user',
+    name: 'UserPlaylistsView',
+    component: UserPlaylistsView,
+    beforeEnter: requireAuth,
   },
 ]
 

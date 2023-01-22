@@ -30,7 +30,7 @@ const props = defineProps({
   padding: 20px;
   border-radius: 10px;
   background: white;
-  /* margin: 16px 0; */
+  margin: 16px 0;
   transition: all ease 0.2s;
 }
 .single:hover {
@@ -45,12 +45,9 @@ const props = defineProps({
   border-radius: 10px;
 }
 img {
-  /* max-width: 150%;
+  max-width: 150%;
   max-height: 150%;
-  display: block; */
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+  display: block;
 }
 .info {
   margin: 0 30px;
