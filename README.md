@@ -1,5 +1,5 @@
 # vue3_music_notes
-
+Your Music and Playlists are always with you!
 ## Project setup
 ```
 npm install
