@@ -24,7 +24,7 @@ const handleLogout = async () => {
     <nav>
       <div class="logo-container">
         <router-link :to="{ name: 'HomeView' }">
-          <img src="@/assets/music_school_logo_img.png" alt="music_school_logo" />
+          <img src="@/assets/images/music_school_logo_img.png" alt="music_school_logo" />
         </router-link>
       </div>
       <h1><router-link :to="{ name: 'HomeView' }">Music Notes</router-link></h1>

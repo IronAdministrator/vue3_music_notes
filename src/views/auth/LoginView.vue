@@ -30,7 +30,7 @@ const handleSubmit = async () => {
     <button :disabled="isPending">{{ isPending ? "Loading..." : "Log in" }}</button>
     <!-- <button v-if="!isPending">Log in</button> -->
     <!-- <button v-if="isPending" disabled>Loading...</button> -->
-  </form>
+</form>
 </template>
 
-<style></style>
+<style lang="scss"></style>
