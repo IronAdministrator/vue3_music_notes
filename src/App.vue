@@ -15,7 +15,7 @@ import Navbar from "./components/Navbar.vue";
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .content {
   margin: 0 auto;
   max-width: 1200px;
