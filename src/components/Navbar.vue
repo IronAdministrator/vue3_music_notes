@@ -31,9 +31,7 @@ const handleLogout = async () => {
       <div class="links">
         <div v-if="user" class="nav-menu">
           <router-link :to="{ name: 'UserPlaylistsView' }">My Playlists</router-link>
-          <router-link class="btn" :to="{ name: 'CreatePlaylistView' }"
-            >Create Playlist</router-link
-          >
+          <router-link class="btn" :to="{ name: 'CreatePlaylistView' }">Create Playlist</router-link>
           <span>Hi, {{ user.displayName }}</span>
           <button @click="handleLogout" :disabled="isPending">
             {{ isPending ? "Loading..." : "Logout" }}
@@ -48,57 +46,6 @@ const handleLogout = async () => {
   </div>
 </template>
 
-<style scoped>
-.navbar {
-  padding: 10px;
-  margin-bottom: 60px;
-  background: white;
-}
-nav {
-  display: flex;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-nav .logo-container {
-  height: 70px;
-  width: 70px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-nav .logo-container img {
-  max-height: 70px;
-  scale: 1.5;
-}
-nav h1 {
-  display: none;
-}
-nav .links {
-  margin-left: auto;
-  display: flex;
-  gap: 1rem;
-}
-nav .links .nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-nav .links a,
-button {
-  font-size: 14px;
-}
-span {
-  font-size: 14px;
-  display: inline-block;
-  margin-left: 16px;
-  padding-left: 16px;
-  border-left: 1px solid #eee;
-}
-
-@media only screen and (min-width: 568px) {
-  nav h1 {
-    display: block;
-    margin-left: 20px;
-  }
-}
+<style scoped lang="scss">
+@import "@/assets/styles/components/_navbar.scss";
 </style>

@@ -23,7 +23,7 @@ const routes = [
     path: '/',
     name: 'HomeView',
     component: HomeView,
-    beforeEnter: requireAuth
+    // beforeEnter: requireAuth
   },
   {
     path: '/login',

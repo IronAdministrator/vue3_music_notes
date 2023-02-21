@@ -1,0 +1,52 @@
+.navbar {
+  padding: 10px;
+  background: transparent;
+
+  nav {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .logo-container {
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        max-height: 70px;
+        scale: 1.5;
+      }
+    }
+    h1 {
+      display: none;
+
+      @media only screen and (min-width: 568px) {
+        display: block;
+        margin-left: 20px;
+      }
+    }
+    .links {
+      margin-left: auto;
+      display: flex;
+      gap: 1rem;
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+    }
+    span {
+      font-size: 14px;
+      display: inline-block;
+      margin-left: 16px;
+      padding-left: 16px;
+      border-left: 1px solid #eee;
+    }
+  }
+}
+
+nav .links a,
+button {
+  font-size: 14px;
+}
