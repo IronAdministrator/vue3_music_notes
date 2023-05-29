@@ -16,7 +16,8 @@ const handleSubmit = async () => {
   if (!error.value) {
     console.log("user logged in");
     // emit("toChat");
-    router.push({ name: "UserPlaylistsView" });
+    // router.push({ name: "UserPlaylistsView" });
+    router.push({ name: "HomeView" });
   }
 };
 </script>
@@ -30,7 +31,7 @@ const handleSubmit = async () => {
     <button :disabled="isPending">{{ isPending ? "Loading..." : "Log in" }}</button>
     <!-- <button v-if="!isPending">Log in</button> -->
     <!-- <button v-if="isPending" disabled>Loading...</button> -->
-</form>
+  </form>
 </template>
 
 <style lang="scss"></style>

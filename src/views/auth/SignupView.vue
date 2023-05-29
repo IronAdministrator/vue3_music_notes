@@ -12,7 +12,8 @@ const handleSubmit = async () => {
   const res = await signup(email.value, password.value, displayName.value);
   if (!error.value) {
     console.log("user signed up");
-    router.push({ name: "UserPlaylistsView" });
+    // router.push({ name: "UserPlaylistsView" });
+    router.push({ name: "HomeView" });
   }
 };
 </script>
@@ -27,7 +28,7 @@ const handleSubmit = async () => {
     <button :disabled="isPending">{{ isPending ? "Loading..." : "Sign up" }}</button>
     <!-- <button v-if="!isPending">Sign up</button> -->
     <!-- <button v-if="isPending" disabled>Loading...</button> -->
-</form>
+  </form>
 </template>
 
 <style></style>

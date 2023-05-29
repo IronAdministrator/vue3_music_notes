@@ -14,7 +14,8 @@ const handleLogout = async () => {
   await logout();
   if (!error.value) {
     console.log("user logged out!");
-    router.push({ name: "LoginView" });
+    // router.push({ name: "LoginView" });
+    router.push({ name: "HomeView" });
   }
 };
 </script>

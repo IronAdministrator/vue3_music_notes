@@ -79,12 +79,14 @@ const handleSongDelete = async (id) => {
   grid-template-columns: 1fr 2fr;
   gap: 80px;
 }
+
 .cover {
   overflow: hidden;
   border-radius: 20px;
   position: relative;
   padding: 160px;
 }
+
 .cover img {
   display: block;
   position: absolute;
@@ -95,23 +97,29 @@ const handleSongDelete = async (id) => {
   max-width: 200%;
   max-height: 200%;
 }
+
 .playlist-info {
   text-align: center;
 }
+
 .playlist-info h2 {
   text-transform: capitalize;
   font-size: 28px;
   margin-top: 20px;
 }
+
 .playlist-info p {
   margin-bottom: 20px;
 }
+
 .username {
   color: #999;
 }
+
 .description {
   text-align: left;
 }
+
 .single-song {
   padding: 10px 0;
   display: flex;
